@@ -15,6 +15,11 @@ jobs:
     # Specify the environment here
     environment: dev 
 
+    defaults:
+      run:
+        working-directory: ./dbt_demo
+
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
