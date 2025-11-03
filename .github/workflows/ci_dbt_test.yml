@@ -12,39 +12,58 @@ jobs:
   test_dbt_models:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # Specify the environment here
-    environment: dev 
+    environment: dev
 
     defaults:
       run:
-        working-directory: ./dbt_demo
-
+        working-directory: ./dbt_demo   # 👈 where dbt_project.yml lives
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Python environment
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
+      - name: Setup Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Install dbt and Snowflake adapter
-      run: |
-        python -m pip install --upgrade pip
-        pip install dbt-core dbt-snowflake 
+      - name: Install dbt and Snowflake adapter
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-core dbt-snowflake
 
-    - name: Install dbt packages
-      run: dbt deps
+      # 👇 Create a profiles.yml dynamically
+      - name: Create dbt profile for Snowflake
+        run: |
+          mkdir -p ~/.dbt
+          echo "dbt_demo:
+            outputs:
+              dev:
+                type: snowflake
+                account: $SNOWFLAKE_ACCOUNT
+                user: $SNOWFLAKE_USER
+                password: $SNOWFLAKE_PASSWORD
+                role: $SNOWFLAKE_ROLE
+                database: $SNOWFLAKE_DATABASE
+                warehouse: $SNOWFLAKE_WAREHOUSE
+                schema: $SNOWFLAKE_SCHEMA
+                threads: 4
+            target: dev" > ~/.dbt/profiles.yml
 
-    - name: Run dbt tests
-      run: dbt test
-      env:
-        # Pass GitHub secrets from the 'dev' environment as environment variables
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+
+      - name: Install dbt packages
+        run: dbt deps
+
+      - name: Run dbt debug
+        run: dbt debug
+
+      - name: Run dbt tests
+        run: dbt test
