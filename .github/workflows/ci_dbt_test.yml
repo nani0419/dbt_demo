@@ -1,0 +1,45 @@
+name: dbt Snowflake Testing CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test_dbt_models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Specify the environment here
+    environment: dev 
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install dbt and Snowflake adapter
+      run: |
+        python -m pip install --upgrade pip
+        pip install dbt-core dbt-snowflake 
+
+    - name: Install dbt packages
+      run: dbt deps
+
+    - name: Run dbt tests
+      run: dbt test
+      env:
+        # Pass GitHub secrets from the 'dev' environment as environment variables
+        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}

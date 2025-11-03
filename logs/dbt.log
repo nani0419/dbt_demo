@@ -1,0 +1,111 @@
+[0m13:15:03.409534 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F4D76CD70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F4E234A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F4E8E3D90>]}
+
+
+============================== 13:15:03.437288 | 8c536d02-dd29-4654-80b2-7449c3873d9f ==============================
+[0m13:15:03.437288 [info ] [MainThread]: Running with dbt=1.10.13
+[0m13:15:03.438153 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt init', 'no_print': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m13:15:30.215481 [debug] [MainThread]: Starter project path: C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\include\starter_project
+[0m13:15:30.262384 [info ] [MainThread]: 
+Your new dbt project "dbt_demo" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:15:30.263156 [info ] [MainThread]: Setting up your profile.
+[0m13:45:19.026746 [error] [MainThread]: Encountered an error:
+
+[0m13:45:19.039933 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+                      ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\cli\main.py", line 483, in init
+    results = task.run()
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\task\init.py", line 346, in run
+    self.setup_profile(profile_name)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\task\init.py", line 262, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\task\init.py", line 179, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\task\init.py", line 163, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\task\init.py", line 129, in generate_target_from_input
+    target[key] = click.prompt(
+                  ~~~~~~~~~~~~^
+        text, default=default, hide_input=hide_input, type=type
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\click\termui.py", line 168, in prompt
+    value = prompt_func(prompt)
+  File "C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\click\termui.py", line 151, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m13:45:19.044022 [debug] [MainThread]: Command `dbt init` failed at 13:45:19.043628 after 1815.82 seconds
+[0m13:45:19.045142 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F50797490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F4F97B890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022F507AE250>]}
+[0m13:45:19.046319 [debug] [MainThread]: Flushing usage events
+[0m13:45:19.751571 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m17:46:05.318614 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF8777CD70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF88244A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF888F7D90>]}
+
+
+============================== 17:46:05.339854 | b5fb6e47-ad5b-4669-a864-1d68f085fb12 ==============================
+[0m17:46:05.339854 [info ] [MainThread]: Running with dbt=1.10.13
+[0m17:46:05.340729 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'target_path': 'None', 'log_format': 'default', 'cache_selected_only': 'False', 'use_colors': 'True', 'warn_error': 'None', 'log_path': 'logs', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'version_check': 'True', 'use_experimental_parser': 'False', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'invocation_command': 'dbt init dbt_demo', 'printer_width': '80', 'write_json': 'True'}
+[0m17:46:05.370504 [debug] [MainThread]: Starter project path: C:\Users\Dell\source\repos\dbt_demo\dbt\Lib\site-packages\dbt\include\starter_project
+[0m17:46:05.397977 [info ] [MainThread]: 
+Your new dbt project "dbt_demo" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m17:46:05.398810 [info ] [MainThread]: Setting up your profile.
+[0m17:49:21.207343 [info ] [MainThread]: Profile dbt_demo written to C:\Users\Dell\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m17:49:21.210185 [debug] [MainThread]: Command `dbt init` succeeded at 17:49:21.209855 after 196.08 seconds
+[0m17:49:21.211102 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF8A7A7100>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF89B57530>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EF8A7BE360>]}
+[0m17:49:21.212004 [debug] [MainThread]: Flushing usage events
+[0m17:49:21.902746 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m17:49:39.351003 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F001F20D70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F0029E4A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F003097D90>]}
+
+
+============================== 17:49:39.359576 | 69690fb3-43d9-4b75-bc8a-5d3bf1431be8 ==============================
+[0m17:49:39.359576 [info ] [MainThread]: Running with dbt=1.10.13
+[0m17:49:39.360368 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\Dell\\.dbt', 'no_print': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'version_check': 'True', 'use_experimental_parser': 'False', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'log_format': 'default', 'invocation_command': 'dbt debug', 'printer_width': '80', 'write_json': 'True'}
+[0m17:49:39.386188 [info ] [MainThread]: dbt version: 1.10.13
+[0m17:49:39.386722 [info ] [MainThread]: python version: 3.13.7
+[0m17:49:39.387154 [info ] [MainThread]: python path: C:\Users\Dell\source\repos\dbt_demo\dbt\Scripts\python.exe
+[0m17:49:39.387501 [info ] [MainThread]: os info: Windows-11-10.0.26100-SP0
+[0m17:49:39.845214 [info ] [MainThread]: Using profiles dir at C:\Users\Dell\.dbt
+[0m17:49:39.845784 [info ] [MainThread]: Using profiles.yml file at C:\Users\Dell\.dbt\profiles.yml
+[0m17:49:39.846194 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Dell\source\repos\dbt_demo\dbt_project.yml
+[0m17:49:39.846666 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m17:49:39.847599 [debug] [MainThread]: Command `dbt debug` failed at 17:49:39.847482 after 0.67 seconds
+[0m17:49:39.847925 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F005054FC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F005046570>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F004F82690>]}
+[0m17:49:39.848272 [debug] [MainThread]: Flushing usage events
+[0m17:49:40.446398 [debug] [MainThread]: An error was encountered while trying to flush usage events
